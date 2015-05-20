@@ -42,6 +42,25 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+  if (req.session.hora != undefined) {
+    ahora = (+new Date);
+    console.log("Hora sess ", req.session.hora);
+    if ((ahora - req.session.hora < 2000)) {
+      req.session.hora = ahora;
+    }
+    else {
+      console.log("Estoy aaaaaaaaaaaaaaaaaaaaa", req.path);
+      if (!req.path.match(/\/login|\/logout/)) {
+        req.session.destroy();
+      }
+
+
+    }
+  }
+  next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -58,6 +77,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
+        res.redirect('/logout')
         res.render('error', {
             message: err.message,
             error: err,
