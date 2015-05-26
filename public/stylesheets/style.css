@@ -16,3 +16,10 @@ nav span             { margin: 0px 10px 0px 0px;
 .right 				 {float: right;}
 
 .quiz_img 			 { height: 150px; float: left;}
+
+.fav_img_gris 			 { background-image: url('/fav_gris.png');
+								 			width: 37px; height: 37px;
+  							 			cursor:pointer;}
+.fav_img_amarillo 	 { background-image: url('/fav_amarillo.png');
+																			 			width: 37px; height: 37px;
+											  							 			cursor:pointer;}

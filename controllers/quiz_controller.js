@@ -41,7 +41,13 @@ exports.index = function(req, res) {
 
   models.Quiz.findAll(options).then(
     function(quizes) {
-      res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+      console.log("REQ-->", req.query.fav);
+      if (req.query.fav === undefined)
+        res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+      else if (req.query.fav === '1')
+        res.render('quizes/indexg.ejs', {quizes: quizes, errors: []});
+      else
+      res.render('quizes/indexy.ejs', {quizes: quizes, errors: []});
     }
   ).catch(function(error){next(error)});
 };
